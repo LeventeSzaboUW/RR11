@@ -1,0 +1,126 @@
+---
+lang: en
+
+title: "Analysis of Hannah Montana Viewership Data"
+subtitle: "Reproducible Research --- Assignment 11"
+author:
+  name:
+    given: "Levente Laszlo"
+    family: "Szabo"
+    literal: "Levente Laszlo Szabo (488761)"
+  email: "ll.szabo@student.uw.edu.pl"
+  affiliation:
+    name: "University of Warsaw"
+    department: "Data Science and Business Analytics"
+    group: "Master's Degree"
+    address: "ul. Krakowskie Przedmiescie 26/28"
+    city: "Warsaw"
+    country: "Poland"
+    postal-code: "00-927"
+    url: "https://en.uw.edu.pl"
+date: "today"
+
+pagetitle: "Assignment 11 --- Levente Szabo"
+author-meta: "Levente Laszlo Szabo (488761)"
+date-meta: "`{r} Sys.Date()`"
+
+format:
+  html:
+    theme: "zephyr"
+    mainfont: "Times New Roman"
+    fontsize: "1.1em"
+    linestretch: 1.5
+
+    page-layout: "full"
+    date-format: "long"
+    number-sections: true
+    anchor-sections: false
+
+    toc: true
+    toc-title: "Table of Contents"
+    toc-location: "left"
+    toc-expand: true
+    toc-depth: 3
+
+    highlight-style: "github"
+    code-line-numbers: true
+
+    embed-resources: true
+    progress: false
+    smooth-scroll: true
+
+bibliography: "references.bib"
+bibliographystyle: "apa"
+csl: apa.csl
+biblio-title: "Works Cited"
+
+editor: source
+---
+
+
+
+
+## Introduction
+
+My dataset [@panamitsu__2026] stores an overview of the episodes of **Hannah Montana**. My goal in this assignment is to analyze the viewership of the TV show over time.
+
+
+
+### About the Series of Hannah Montana
+
+**Hannah Montana** is a teen sitcom that follows *Miley Stewart*, a regular girl living a double life as a famous pop star named *Hannah Montana*. By day, she is a normal student dealing with school, friends, and family. By night, she performs as *Hannah Montana*, hiding her true identity from the public to maintain a normal life. Only her close friends and family know her secret. \
+The show mixes comedy, music, and coming-of-age themes, focusing on balancing fame with personal life, staying true to yourself, and handling typical teenage challenges. It stars *Miley Cyrus* and played a big role in Disney Channel’s popularity in the late $2000$s.
+
+
+
+### Poster of Hannah Montana
+
+![&#128279; @tiansw__2026](https://m.media-amazon.com/images/I/71OBvF8twfL._AC_SL1046_.jpg){width=250}
+
+
+
+
+## Analysis
+
+
+
+### Summary of the Viewership
+
+tbd...
+
+
+
+### Graph of the Viewership Over Time
+
+tbd...
+
+
+
+### Graph of the Season-to-Season) Changes in Viewership
+
+tbd...
+
+
+
+### Observed Changes
+
+tbd...
+
+
+
+## Disclaimer
+
+During the preparation of this assignment, the author used
+
+* [ChatGPT](https://chatgpt.com/) (v5.2) for helping summarize the series and
+* [DeepL](https://www.deepl.com/) for checking grammar and vocabulary.
+
+The author verified the content and edited the assignment text in accordance with its objectives, presents his own intellectual contribution, and assumes full responsibility for the final version of his assignment.
+
+
+
+
+## Works Cited
+
+::: {#refs}
+:::
