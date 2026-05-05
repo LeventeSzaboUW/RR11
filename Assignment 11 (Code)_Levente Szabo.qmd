@@ -57,6 +57,31 @@ biblio-title: "Works Cited"
 editor: source
 ---
 
+```{r settingUp}
+#| echo: false
+#| output: false
+#| error: false
+#| warning: false
+
+Sys.setlocale("LC_TIME", "en_US.UTF-8")
+
+options(
+  width = 130
+)
+
+library(tidyverse)
+
+data <- read_tsv(
+  file = "C:\\Users\\SzabónéTátraiKatalin\\Documents\\University of Milan\\OneDrive - Università degli Studi di Milano\\Subjects\\University of Warsaw\\2nd semester\\Reproducible Research\\Seminar 11\\Dataset.tsv",
+  col_names = TRUE,
+  col_types = "nncccDn",
+  na = "N/A",
+  show_col_types = FALSE,
+  skip_empty_rows = TRUE,
+  progress = FALSE
+)
+```
+
 
 
 
@@ -86,25 +111,137 @@ The show mixes comedy, music, and coming-of-age themes, focusing on balancing fa
 
 ### Summary of the Viewership
 
-tbd...
+```{r summary}
+#| echo: true
+#| output: true
+#| error: false
+#| warning: false
+
+summary(data$viewers)
+```
 
 
 
 ### Graph of the Viewership Over Time
 
-tbd...
+```{r timeSeries}
+#| echo: false
+#| output: true
+#| error: false
+#| warning: false
+
+ggplot(
+  data = data,
+  aes(
+    x = release,
+    y = viewers
+  )
+) + geom_line(
+  color = "#1A85FF",
+  linewidth = 1.3,
+  show.legend = FALSE
+) + scale_y_continuous(
+  limits = c(0, 12),
+  breaks = seq(0, 12, by = 2),
+  expand = expansion(mult = c(0, 0))
+) + labs(
+  title = "Viewership Over Time",
+  subtitle = "viewership for some episodes is unknown",
+  x = NULL,
+  y = "viewership (million)"
+) + theme_bw(
+  base_size = 18
+) + theme(
+  legend.position = "none",
+  plot.title = element_text(
+    size = 22,
+    face = "bold"
+  ),
+  plot.subtitle = element_text(size = 20),
+  axis.title = element_text(size = 15)
+)
+```
 
 
 
-### Graph of the Season-to-Season) Changes in Viewership
+### Graph of the Season-to-Season Changes in Viewership
 
-tbd...
+```{r changes}
+#| echo: false
+#| output: true
+#| error: false
+#| warning: false
+
+data_season <- data %>%
+  drop_na(viewers) %>%
+    group_by(season) %>%
+      summarise(
+        mean = mean(viewers),
+        .groups = "drop"
+      ) %>%
+        arrange(season) %>%
+          mutate(
+            change = mean - lag(mean)
+          ) %>%
+            filter(
+              season > 1
+            )
+
+ggplot(
+  data = data_season,
+  aes(
+    x = season,
+    y = change
+  )
+) + geom_col(
+  position = position_dodge(width = 0.8),
+  width = 0.7,
+  color = "#39E600",
+  fill = "#339933"
+) + geom_text(
+  aes(
+    label = paste0(
+      ifelse(change > 0, "+", ""),
+      round(change, 3),
+      " million"
+    )
+  ),
+  position = position_dodge(width = 0.8),
+  vjust = -0.5,
+  size = 5,
+  fontface = "bold",
+  color = "#39E600",
+  lineheight = 1
+) + scale_x_continuous(
+  limits = c(1.5, 4.5),
+  breaks = seq(2, 4, by = 1),
+  expand = expansion(mult = c(0, 0))
+) + scale_y_continuous(
+  limits = c(-1, 1),
+  breaks = seq(-1, 1, by = 0.25),
+  expand = expansion(mult = c(0, 0))
+) + labs(
+  title = "Viewership Change Season-to-Season",
+  x = "season number",
+  y = "viewership change (million)"
+) + theme_bw(
+  base_size = 18
+) + theme(
+  plot.title = element_text(
+    size = 22,
+    face = "bold"
+  ),
+  plot.subtitle = element_text(size = 20),
+  axis.title = element_text(size = 15)
+)
+```
 
 
 
 ### Observed Changes
 
-tbd...
+From the last figure, I can see that, on average, $`{r} round(data_season$change[1], 3)`$ million more people watched the 2^nd^ season than the 1^st^ one. Then, the audience for the 3^rd^ season grew by an even greater number of $`{r} round(data_season$change[2], 3)`$ million people. Finally, the closing season was the most successful with an additional $`{r} round(data_season$change[2], 3)`$ million viewers.
+
 
 
 
@@ -112,7 +249,7 @@ tbd...
 
 During the preparation of this assignment, the author used
 
-* [ChatGPT](https://chatgpt.com/) (v5.2) for helping summarize the series and
+* [ChatGPT](https://chatgpt.com/) (v5.2) for helping summarize the series and calculating the changes between seasons in `R` and
 * [DeepL](https://www.deepl.com/) for checking grammar and vocabulary.
 
 The author verified the content and edited the assignment text in accordance with its objectives, presents his own intellectual contribution, and assumes full responsibility for the final version of his assignment.
